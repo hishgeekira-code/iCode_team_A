@@ -184,14 +184,7 @@ public class AnimalPark {
             if (a instanceof Elephant e) e.spray();
             if (a instanceof Penguin p) p.swim();
             if (a instanceof Giraffe g) g.eatLeaves();
-            
-            class Keeper {
-    String name;
-    Animal[] assigned;  // хариуцсан амьтдын жагсаалт
-
-    void feedAssigned(String food) { ... }
-    void checkAllHealth() { ... }
-}
+            System.out.println("hello");
         }
     }
 }
