@@ -152,6 +152,47 @@ public class AnimalPark {
         System.out.println("=====================================");
     }
 
+    static class Enclosure {
+    String name;
+    Animal[] residents;
+    int maxCapacity;
+    int currentCount;
+
+    Enclosure(String name, int maxCapacity) {
+        this.name = name;
+        this.maxCapacity = maxCapacity;
+        this.residents = new Animal[maxCapacity];
+        this.currentCount = 0;
+    }
+
+    boolean addAnimal(Animal a) {
+        if (isFull()) {
+            System.out.println(name + " tor dvvrsen baina! " + a.name + "-iig oruulah bolomjgvi.");
+            return false;
+        }
+        residents[currentCount] = a;
+        currentCount++;
+        System.out.println(a.name + " (" + a.getType() + ") amjilttai " + name + " ruu orloo.");
+        return true;
+    }
+
+    void showResidents() {
+        System.out.println("\n=== [" + name + "] TORNII Orshin suugchid ===");
+        if (currentCount == 0) {
+            System.out.println("Ene tor hooson baina.");
+            return;
+        }
+        for (int i = 0; i < currentCount; i++) {
+            System.out.println("- " + residents[i].name + " [" + residents[i].getType() + "]");
+        }
+    }
+
+    // Тор дүүрсэн эсэхийг шалгах
+    boolean isFull() {
+        return currentCount >= maxCapacity;
+    }
+}
+
     // ===== MAIN =====
     public static void main(String[] args) {
         Animal[] park = {
@@ -184,7 +225,6 @@ public class AnimalPark {
             if (a instanceof Elephant e) e.spray();
             if (a instanceof Penguin p) p.swim();
             if (a instanceof Giraffe g) g.eatLeaves();
-            System.out.println("hello");
         }
     }
 }
