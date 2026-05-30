@@ -1,7 +1,9 @@
+
 public class AnimalPark {
 
     // ===== Animal ЭЦЭГ КЛАСС =====
     static class Animal {
+
         String name;
         int age;
         double weight;
@@ -27,11 +29,13 @@ public class AnimalPark {
         }
 
         void checkup() {
-            System.out.println(name + "-ийн эрүүл мэнд: " +
-                (isHealthy ? "Эрүүл" : "Анхааруулга!"));
+            System.out.println(name + "-ийн эрүүл мэнд: "
+                    + (isHealthy ? "Эрүүл" : "Анхааруулга!"));
         }
 
-        String getType() { return "Амьтан"; }
+        String getType() {
+            return "Амьтан";
+        }
 
         void showProfile() {
             System.out.println("---------------------");
@@ -45,6 +49,7 @@ public class AnimalPark {
 
     // ===== Lion =====
     static class Lion extends Animal {
+
         double maneLength;
 
         Lion(String name, int age, double weight, double maneLength) {
@@ -52,10 +57,19 @@ public class AnimalPark {
             this.maneLength = maneLength;
         }
 
-        @Override void sound() { System.out.println(name + ": Аарр!! 🦁"); }
-        @Override String getType() { return "Арслан"; }
+        @Override
+        void sound() {
+            System.out.println(name + ": Аарр!! 🦁");
+        }
 
-        void hunt() { System.out.println(name + " ан хийж байна."); }
+        @Override
+        String getType() {
+            return "Арслан";
+        }
+
+        void hunt() {
+            System.out.println(name + " ан хийж байна.");
+        }
 
         @Override
         void showProfile() {
@@ -66,6 +80,7 @@ public class AnimalPark {
 
     // ===== Elephant =====
     static class Elephant extends Animal {
+
         double trunkLength;
 
         Elephant(String name, int age, double weight, double trunkLength) {
@@ -73,10 +88,19 @@ public class AnimalPark {
             this.trunkLength = trunkLength;
         }
 
-        @Override void sound() { System.out.println(name + ": Пүүү! 🐘"); }
-        @Override String getType() { return "Заан"; }
+        @Override
+        void sound() {
+            System.out.println(name + ": Пүүү! 🐘");
+        }
 
-        void spray() { System.out.println(name + " хошуугаараа ус цацаж байна."); }
+        @Override
+        String getType() {
+            return "Заан";
+        }
+
+        void spray() {
+            System.out.println(name + " хошуугаараа ус цацаж байна.");
+        }
 
         @Override
         void showProfile() {
@@ -87,20 +111,31 @@ public class AnimalPark {
 
     // ===== Penguin =====
     static class Penguin extends Animal {
+
         boolean canFly = false;
 
         Penguin(String name, int age, double weight) {
             super(name, age, weight);
         }
 
-        @Override void sound() { System.out.println(name + ": Хааа хааа! 🐧"); }
-        @Override String getType() { return "Пингвин"; }
+        @Override
+        void sound() {
+            System.out.println(name + ": Хааа хааа! 🐧");
+        }
 
-        void swim() { System.out.println(name + " усанд сэлж байна."); }
+        @Override
+        String getType() {
+            return "Пингвин";
+        }
+
+        void swim() {
+            System.out.println(name + " усанд сэлж байна.");
+        }
     }
 
     // ===== Giraffe =====
     static class Giraffe extends Animal {
+
         double neckLength;
 
         Giraffe(String name, int age, double weight, double neckLength) {
@@ -108,10 +143,19 @@ public class AnimalPark {
             this.neckLength = neckLength;
         }
 
-        @Override void sound() { System.out.println(name + " чимээгүй байна."); }
-        @Override String getType() { return "Гирафф"; }
+        @Override
+        void sound() {
+            System.out.println(name + " чимээгүй байна.");
+        }
 
-        void eatLeaves() { System.out.println(name + " өндөр модны навч идэж байна. 🍃"); }
+        @Override
+        String getType() {
+            return "Гирафф";
+        }
+
+        void eatLeaves() {
+            System.out.println(name + " өндөр модны навч идэж байна. 🍃");
+        }
 
         @Override
         void showProfile() {
@@ -120,10 +164,38 @@ public class AnimalPark {
         }
     }
 
+    // ===== НЭМЭЛТ ДААЛГАВАР: Keeper (Асрагч) КЛАСС =====
+    static class Keeper {
+
+        String name;
+        Animal[] assigned;
+
+        Keeper(String name, Animal[] assigned) {
+            this.name = name;
+            this.assigned = assigned;
+        }
+
+        void feedAssigned(String food) {
+            System.out.println("\n=== Асрагч " + name + " хариуцсан амьтдаа хооллож байна: " + food + " ===");
+            for (Animal a : assigned) {
+                a.eat(food);
+            }
+        }
+
+        void checkAllHealth() {
+            System.out.println("\n=== Асрагч " + name + " амьтдын эрүүл мэндийг шалгаж байна ===");
+            for (Animal a : assigned) {
+                a.checkup();
+            }
+        }
+    }
+
     // ===== AnimalPark Туслах Методууд =====
     static void feedAll(Animal[] animals, String food) {
         System.out.println("\n=== Бүх амьтдыг хооллож байна: " + food + " ===");
-        for (Animal a : animals) a.eat(food);
+        for (Animal a : animals) {
+            a.eat(food);
+        }
     }
 
     static void morningRoutine(Animal[] animals) {
@@ -136,19 +208,29 @@ public class AnimalPark {
 
     static Animal heaviest(Animal[] animals) {
         Animal best = animals[0];
-        for (Animal a : animals) if (a.weight > best.weight) best = a;
+        for (Animal a : animals) {
+            if (a.weight > best.weight) {
+                best = a;
+            }
+        }
         return best;
     }
 
     static int countByType(Animal[] animals, String type) {
         int count = 0;
-        for (Animal a : animals) if (a.getType().equals(type)) count++;
+        for (Animal a : animals) {
+            if (a.getType().equals(type)) {
+                count++;
+            }
+        }
         return count;
     }
 
     static void showAllProfiles(Animal[] animals) {
         System.out.println("\n===== АМЬТНЫ ЦЭЦЭРЛЭГИЙН БҮРТГЭЛ =====");
-        for (Animal a : animals) a.showProfile();
+        for (Animal a : animals) {
+            a.showProfile();
+        }
         System.out.println("=====================================");
     }
 
@@ -163,6 +245,7 @@ public class AnimalPark {
             new Giraffe("Джери", 7, 900, 1.8)
         };
 
+        // Үндсэн кодын үйлдлүүд
         showAllProfiles(park);
         morningRoutine(park);
         feedAll(park, "мах");
@@ -175,16 +258,42 @@ public class AnimalPark {
 
         // Polymorphism
         System.out.println("\n=== Дуу гаргах ===");
-        for (Animal a : park) a.sound();
+        for (Animal a : park) {
+            a.sound();
+        }
 
         // Тусгай үйлдлүүд
         System.out.println("\n=== Тусгай үйлдлүүд ===");
         for (Animal a : park) {
-            if (a instanceof Lion l) l.hunt();
-            if (a instanceof Elephant e) e.spray();
-            if (a instanceof Penguin p) p.swim();
-            if (a instanceof Giraffe g) g.eatLeaves();
-            System.out.println("hello");
+            if (a instanceof Lion l) {
+                l.hunt();
+            }
+            if (a instanceof Elephant e) {
+                e.spray();
+            }
+            if (a instanceof Penguin p) {
+                p.swim();
+            }
+            if (a instanceof Giraffe g) {
+                g.eatLeaves();
+            }
         }
+
+        // Нэмэлт даалгаврын хэсэг (Асрагч нарыг ажиллуулах)
+        System.out.println("\n=====================================");
+        System.out.println("    АСРАГЧДЫН АЖИЛ ЭХЭЛЛЭЭ");
+        System.out.println("=====================================");
+
+        Animal[] battsAnimals = {park[0], park[1], park[3], park[4]};
+        Keeper bat = new Keeper("Бат", battsAnimals);
+
+        Animal[] boldooAnimals = {park[2], park[5]};
+        Keeper boldoo = new Keeper("Болдоо", boldooAnimals);
+
+        bat.feedAssigned("мах ба загас");
+        bat.checkAllHealth();
+
+        boldoo.feedAssigned("шинэхэн өвс, навч");
+        boldoo.checkAllHealth();
     }
 }
